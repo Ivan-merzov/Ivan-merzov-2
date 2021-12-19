@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <link rel="stylesheet" href="libs/choices.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript"></script>
+   <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <title>База знаний</title>
+</head>
+<body class="body">
+    <section class="hero">
+    <div class="card-first">
+        <h1 class="card-first-title">Категории:</h1>
+        <ul class="card-first-list">
+
+            <div class="form-group">
+              <input type="checkbox" id="Динозавры">
+              <label for="Динозавры">Динозавры</label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" id="Медведи">
+              <label for="Медведи">Медведи</label>
+            </div>
+            <div class="form-group">
+              <input type="checkbox" id="Косули">
+              <label for="Косули">Косули</label>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="Лисы">
+              <label for="Лисы">Лисы</label>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="Волки">
+              <label for="Волки">Волки</label>
+            </div>
+
+            <div class="form-group">
+              <input type="checkbox" id="Олени и лоси">
+              <label for="Олени и лоси">Олени и лоси</label>
+            </div>
+        </ul>
+    </div>
+
+    <select class="select" name="select">
+        <option class="let" value="">Материал</option>
+        <option class="let" value="">Древесина</option>
+        <option class="let" value="">Металл</option>
+        <option class="let" value="">Камень</option>
+        <option class="let" value="">Пластик</option>
+        <option class="let" value="">Композитный</option>
+        <option class="let" value="">Гипс</option>
+    </select>
+
+    <div class="map" id="map" style="min-width: 460px; height: 460px"></div>
+    <script type="text/javascript">
+        // Функция ymaps.ready() будет вызвана, когда
+        // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+        ymaps.ready(init);
+        function init(){
+            // Создание карты.
+            var myMap = new ymaps.Map("map", {
+                // Координаты центра карты.
+                // Порядок по умолчанию: «широта, долгота».
+                // Чтобы не определять координаты центра карты вручную,
+                // воспользуйтесь инструментом Определение координат.
+                center: [46.51581511, 2.05934886, 46.51886372, 2.06705624],
+                // Уровень масштабирования. Допустимые значения:
+                // от 0 (весь мир) до 19.
+                zoom: 7
+            });
+
+
+
+
+         // Создаём макет содержимого.
+         MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+            '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+        ),
+
+        myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+            hintContent: 'Собственный значок метки',
+            balloonContent: 'Это красивая метка'
+        }, {
+            // Опции.
+            // Необходимо указать данный тип макета.
+            iconLayout: '',
+            // Своё изображение иконки метки.
+            iconImageHref: 'img/Subtract.png',
+            // Размеры метки.
+            iconImageSize: [28, 40],
+            // Смещение левого верхнего угла иконки относительно
+            // её "ножки" (точки привязки).
+            iconImageOffset: [-5, -38]
+        }),
+
+        myPlacemarkWithContent = new ymaps.Placemark([46.51581511, 2.05934886, 46.51886372, 2.06705624], {
+            hintContent: 'Собственный значок метки с контентом',
+            balloonContent: ' Франция, Иль-де-Франс, Париж, X округ Парижа, улица дю Фобур Сен Дени  54',
+            iconContent: ''
+        }, {
+            // Опции.
+            // Необходимо указать данный тип макета.
+            iconLayout: 'default#imageWithContent',
+            // Своё изображение иконки метки.
+            iconImageHref: 'img/Subtract.png',
+            // Размеры метки.
+            iconImageSize: [28, 40],
+            // Смещение левого верхнего угла иконки относительно
+            // её "ножки" (точки привязки).
+            iconImageOffset: [-24, -24],
+            // Смещение слоя с содержимым относительно слоя с картинкой.
+            iconContentOffset: [15, 15],
+            // Макет содержимого.
+            iconContentLayout: MyIconContentLayout
+        });
+
+    myMap.geoObjects
+        .add(myPlacemark)
+        .add(myPlacemarkWithContent);
+      }
+
+
+
+    </script>
+
+
+    <div class="customScroll" data-simplebar>
+        Сложно сказать, почему многие известные личности представлены в исключительно положительном свете.
+        Лишь активно развивающиеся страны третьего мира будут объективно рассмотрены соответствующими инстанциями.
+         Мы вынуждены отталкиваться от того, что высокотехнологичная концепция общественного уклада представляет собой интересный эксперимент проверки глубокомысленных рассуждений.
+          Имеется спорная точка зрения, гласящая примерно следующее: непосредственные участники технического прогресса освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, обнародованы. Значимость этих проблем настолько очевидна, что социально-экономическое развитие,
+           а также свежий взгляд на привычные вещи - безусловно открывает новые горизонты для первоочередных требований
+    </div>
+
+    <form class="form">
+        <legend  class="leg">Как вас зовут?</legend>
+        <input class="form-item" type="text" name="name" placeholder="Имя*" data-validate-filed="name" required>
+        <legend class="leg">Укажите ваш телефон</legend>
+        <input class="form-item" type="tel" name="tel" placeholder="Телефон*" data-validate-filed="tel" required>
+        <legend class="leg">Укажите ваш e-mail</legend>
+        <input class="form-item" type="email" name="e-mail" placeholder="E-mail*" data-validate-fieled="mail" required>
+        <button class="form-btn">Заказать</button>
+    </form>
+
+    <script src="libs/inputmask.min.js"></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+    <script>
+      var selector = document.querySelector("input[type='tel']");
+      var im = new Inputmask("+7-(999)-999-99-99");
+
+      im.mask(selector);
+
+      new JustValidate('.form', {
+        rules: {
+          name: {
+            required: true,
+            minLength: 2,
+            maxLength: 10
+          },
+          tel: {
+            required: true,
+            function: (name, value) => {
+              const phone = selector.inputmask.unmaskedvalue()
+              return Number(phone) && phone.length == 10
+            }
+          }
+        }
+      })
+
+
+    </script>
+    <div class="tooltypes">
+        <div class="tool-card"><p class="tool-content">Следует отметить, что социально-экономическое развитие способствует повышению качества переосмысления внешнеэкономических политик
+          <div class="tooltip">
+            <div class="marker"></div>
+            <div class="popup"><p class="p"> Глава 2, страница 176</p>
+            </div>
+        </div>
+        </p></div>
+        <div class="tool-card"><p class="tool-content">Следует отметить, что социально-экономическое развитие способствует повышению качества переосмысления внешнеэкономических политик</p></div>
+    </div>
+
+
+</section>
+<script src="libs/choices.min.js"></script>
+<script src="script/script.js"></script>
+</body>
+</html>
